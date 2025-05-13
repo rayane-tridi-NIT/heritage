@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion / Inscription</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #111;
+      width: 350px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #222;
+      color: #fff;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #ccc;
+    }
+
+    .switch {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .switch a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="loginForm" class="form active">
+      <h2>Connexion</h2>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Mot de passe" required>
+      <button type="submit">Se connecter</button>
+      <div class="switch">
+        Pas encore inscrit ? <a onclick="switchForm('signupForm')">Créer un compte</a>
+      </div>
+    </form>
+
+    <form id="signupForm" class="form">
+      <h2>Inscription</h2>
+      <input type="text" placeholder="Nom complet" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Mot de passe" required>
+      <button type="submit">S'inscrire</button>
+      <div class="switch">
+        Déjà un compte ? <a onclick="switchForm('loginForm')">Se connecter</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function switchForm(id) {
+      document.getElementById("loginForm").classList.remove("active");
+      document.getElementById("signupForm").classList.remove("active");
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+/* Masquer initialement avec une transition fluide */
+/* En-tête identique à celle de la page Map */
+.app-header {
+    background-color: #304ffc;
+    color: #F0ECE5;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+/* Update the filter menu styles */
+#filterMenu {
+    position: fixed;  /* Change from absolute to fixed */
+    top: 80px;       /* Adjust based on your header height */
+    right: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 280px;
+    z-index: 1050;   /* Make sure it's above other content but below header */
+}
+
+/* Classe active pour afficher le menu */
+#filterMenu.show {
+    max-height: 400px;
+    padding: 20px;
+}
+
+/* Style des labels */
+#filterMenu label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+    color: #333;
+}
+
+#filterMenu label:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Style des checkboxes */
+#filterMenu input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #573418;
+    border-radius: 6px;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+#filterMenu input[type="checkbox"]:checked {
+    background-color: #573418;
+}
+
+#filterMenu input[type="checkbox"]:checked::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+}
+
+/* Bouton appliquer */
+#applyFilter {
+    background: linear-gradient(135deg, #573418 0%, #8B4513 100%);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#applyFilter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(87, 52, 24, 0.2);
+}
+
+#applyFilter:active {
+    transform: translateY(0);
+}
+
+/* Update the filter button styles */
+#filterBtn {
+    position: relative;
+    z-index: 1050;   /* Match filter menu z-index */
+    padding: 10px 20px;
+    background: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Effet hover */
+#filterBtn:hover {
+    background: #f5f5f5;
+}
+
+/* Ajout d'un effet d'onde au clic */
+#filterBtn:active {
+    transform: scale(0.98);
+}
+
+/* Ajout d'une icône */
+#filterBtn::before {
+    content: "🔍"; /* Icône de filtre */
+    font-size: 18px;
+}
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .content {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            font-size: 24px;
+            padding: 20px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to right, #573418e5, #4736136e);
+            color: white;
+            display: flex;
+            justify-content: space-around; /* Espacement régulier */
+            align-items: center;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .footer-button {
+            background: none;
+            border: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 5px 15px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .footer-button span {
+            color: white;
+            margin-top: 4px;
+        }
+        
+        .footer-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        
+        .footer-button i {
+            font-size: 20px; /* Taille de l’icône */
+            margin-bottom: 2px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+        
+             /* Conteneur du menu */
+        .menu-container {
+            position: fixed;
+            top: 1.5rem;
+            left: 2rem;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        /* Bouton menu burger */
+        .menu-button {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        .menu-button div {
+            width: 35px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.7s ease-in-out;
+        }
+
+        .menu-button:hover div {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Menu déroulant */
+        .menu {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 120px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .menu a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .menu a:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Affichage du menu au survol */
+        .menu-container:hover .menu {
+            display: flex;
+        }
+
+        /* Formulaire */
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* ======= Galerie Photo ======= */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover img {
+            opacity: 0.8;
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: rgb(216, 208, 208);
+            padding: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+.header-heritage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #4736136e, #573418e5);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjusted to space-between */
+  z-index: 1100;   /* Increase z-index to stay above filter menu */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding-left: 10rem; /* Add left padding */
+}
+
+.header-heritage h1 {
+  font-size: 2rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.header-heritage .emoji {
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+
+/* Hero Image */
+.hero-image {
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hero-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gallery-item:hover img {
+  opacity: 0.8;
+}
+
+.gallery-item .caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: rgb(216, 208, 208);
+  padding: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gallery-item:hover .caption {
+  opacity: 1;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #573418e5, #4736136e);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.footer-button {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-button span {
+  color: white;
+  margin-top: 4px;
+}
+
+.footer-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.footer-button i {
+  font-size: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Menu Container */
+.menu-container {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  z-index: 1100;
+}
+
+.menu-button {
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.menu-button div {
+  width: 35px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-button:hover div {
+  background-color: #ddd;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1200;
+}
+
+.menu a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  display: block;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.menu a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-container:focus-within .menu {
+  display: flex;
+}
+
+.menu-container:hover .menu {
+    display: flex;
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hôtels</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 32px;
+      color: #333;
+    }
+
+    main {
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .filter-container {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .filter-button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .filter-button:hover {
+      background-color: #333;
+    }
+
+    .filter-menu {
+      display: none;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      border-radius: 8px;
+    }
+
+    .filter-menu label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    .filter-menu input {
+      margin-right: 10px;
+    }
+
+    .apply-filter {
+      padding: 10px 15px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .apply-filter:hover {
+      background-color: #333;
+    }
+
+    .hotel-type {
+      background-color: white;
+      border-left: 5px solid #000;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .hotel-type h3 {
+      margin: 0 0 10px 0;
+      color: #000;
+    }
+
+    .hotel-post {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .hotel-post img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .hotel-post .message {
+      margin-top: 10px;
+    }
+
+    .hotel-post .price {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #000;
+    }
+
+    .retour {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .retour:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Heritage</h1>
+</header>
+
+<main>
+  <h2>Filtrer par type d'hôtel :</h2>
+  <div class="filter-container">
+    <button id="filterBtn" class="filter-button">Filtrer</button>
+  </div>
+
+  <div id="filterMenu" class="filter-menu">
+    <label><input type="checkbox" name="category" value="luxe" /> Hôtel de luxe</label>
+    <label><input type="checkbox" name="category" value="economique" /> Hôtel économique</label>
+    <button id="applyFilter" class="apply-filter">Appliquer</button>
+  </div>
+
+  <!-- Hôtel Luxe -->
+  <div class="hotel-type luxe">
+    <h3>🏨 bejaia city</h3>
+    <p>Un hôtel 5 étoiles au cœur d'Alger.</p>
+
+    <div class="hotel-post">
+      <h4>Vue panoramique</h4>
+      <img src="bejaiacity.png" alt="bejaiacity">
+      <div class="message">
+        <p>Profitez d’un séjour de luxe avec spa, piscine, et restaurants gastronomiques. Idéal pour les voyageurs d'affaires et les touristes.</p>
+      </div>
+      <div class="price">
+        <p>Prix : 20 000 DA / nuit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hôtel Économique -->
+  <div class="hotel-type economique">
+    <h3>🏨 Hôtel bejaia centre-ville</h3>
+    <p>Un hébergement confortable à petit prix.</p>
+
+    <div class="hotel-post">
+      <h4>Chambres simples et propres</h4>
+      <img src="hotelB.jpeg" alt="Hôtel économique">
+      <div class="message">
+        <p>Idéal pour les voyageurs à budget limité. Proche du centre-ville, Wi-Fi gratuit, petit-déjeuner inclus.</p>
+      </div>
+      <div class="price">
+        <p>Prix : 3 000 DA / nuit</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="endroit.html" class="retour">← Retour à la page</a>
+</main>
+
+<script>
+  // Filtrage des hôtels
+  document.getElementById("filterBtn").addEventListener("click", function() {
+    document.getElementById("filterMenu").style.display = "block";
+  });
+
+  document.getElementById("applyFilter").addEventListener("click", function() {
+    const filters = Array.from(document.querySelectorAll('.filter-menu input:checked')).map(input => input.value);
+    const allCards = document.querySelectorAll('.hotel-type');
+
+    allCards.forEach(card => {
+      const isVisible = filters.length === 0 || filters.some(filter => card.classList.contains(filter));
+      card.style.display = isVisible ? "block" : "none";
+    });
+    document.getElementById("filterMenu").style.display = "none";
+  });
+</script>
+
+</body>
+</html>

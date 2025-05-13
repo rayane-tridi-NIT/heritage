@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <p id="i1"></p>
+<!--     
+    <script>
+                x=typeof "john"+"<br>"+typeof 3.14+"<br>"+typeof false +"<br>"+typeof [1,2,3,4]+"<br>"+typeof function (){};
+                document.write(x);
+                
+    </script>
+    <script>
+        let x=prompt("enter x:");
+        let y=prompt("enter y:");
+        x/=(y+3)%2;
+        alert("x="+x);
+        console.log("x est de type "+typeof x);
+        y=x;
+        x+="";
+        alert("x est de type :"+typeof x);
+        document.getElementById("i1").innerHTML="le type de y n'a pas change"+ (x===y);
+    </script> -->
+<!-- <script>
+    hour=2;
+    if(hour<18){
+        alert("Good evening");
+    }
+    switch(new Date().getDay()){
+        case 0:alert("sunday");break;
+        case 1:alert("Monday");break;
+        case 2:alert("tuesday");break;
+        default: alert("a day");}
+
+    let text ="";
+    const cars =["bmw","volvo","saab","ford","fiat","audi"];
+    for(let  i=0;i<cars.length;i++){
+        text+=cars[i]+"<br>";
+    }
+    document.write(text);
+    const person={fname:"john",lname:"doe",age:24};
+    text+="";
+    for(let x in person){
+        text=cars=person[x];}
+document.write(text);
+    text="";
+    for(let x of cars){
+        text += x;
+    }
+    document.write(text);
+</script> -->
+<p id="usr">user name here !</p>
+<input type="button" onclick="insertName()">
+<!-- <script>
+    function insertName(){
+        try{
+            const n =prompt("Name:");
+            document.getElementById("usr").innerHTML=n;
+        }catch(error){
+            alert(error.message);
+} }-->
+<!-- <script>
+const person={
+    firstname:"dev",
+    lastname:"web",
+    id:2345,
+    fullname: function(){
+return this.firstName+""+this.lastname;
+    }
+};
+person.id++;
+person[firstName]="dev";
+éperson.age=20;
+class car{
+    constructor(name,year){
+        this.name= name;
+        this.year= year;
+    }
+    age(){
+        let date =new Date();
+        return date.getUTCFullYear()-this.year;
+
+    }
+}
+let mycar =new car("ford",2014);
+alert("My car is"+mycar.age()+"years old ");
+</script> -->
+<h2>javascript html dom</h2>
+<div>
+    <p>text1</p>
+    </div>
+<p>text2</p>
+<input type="button" value="ok">
+
+<script>
+const divn =document.getElementsByTagName("div")[0];
+const pn =document.createElement("h4");
+pn.innerHTML="Example";
+divn.appendChild(pn);
+const im= document.createElement("img");
+im.setAttribute("src","logo.png");
+divn.replaceChild(im,divn.firstElementChild);
+const lastp=document.body.children[2];
+document.body.children[2];
+document.body.removeChild(lastp)
+</script>
+</body>
+</html>

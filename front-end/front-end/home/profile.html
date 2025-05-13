@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil Voyage</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --card-bg: #f9f9f9;
+      --button-bg: #e5e5e5;
+      --button-hover: #d0d0d0;
+      --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #f5f5f5;
+      --card-bg: #1e1e1e;
+      --button-bg: #2a2a2a;
+      --button-hover: #3a3a3a;
+      --shadow: rgba(255, 255, 255, 0.05);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .profile-container {
+      max-width: 500px;
+      margin: 40px auto 20px auto;
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 20px var(--shadow);
+      text-align: center;
+    }
+
+    .profile-container img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 4px solid #ccc;
+    }
+
+    .profile-container h1 {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    .bio {
+      font-style: italic;
+      opacity: 0.7;
+      margin-bottom: 15px;
+    }
+
+    .profile-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 15px;
+    }
+
+    .profile-stats strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: var(--button-bg);
+      color: var(--text);
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .posts-section,
+    .map-section {
+      max-width: 500px;
+      margin: 0 auto 40px auto;
+      padding: 10px;
+    }
+
+    .post {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+
+    .post-time {
+      font-size: 12px;
+      opacity: 0.5;
+      text-align: right;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    
+
+    .footer {
+            width: 100%;
+            height: 60px;
+            background: white;
+            display: flex;
+            justify-content: space-around; /* Espacement régulier */
+            align-items: center;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .footer-button {
+            background: none;
+            border: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .footer-button i {
+            font-size: 20px; /* Taille de l’icône */
+            margin-bottom: 2px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+    #new-post-form {
+      display: none;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 15px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+
+    #new-post-form input,
+    #new-post-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    /* Toggle Switch */
+    .toggle-container {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      border-radius: 34px;
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #111;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+  </style>
+  <script defer>
+    function togglePostForm() {
+      const form = document.getElementById("new-post-form");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</head>
+<body>
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" onclick="toggleDarkMode()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="profile-container">
+    <img src="logo heritage.webp" alt="Photo de profil voyageur" />
+    <h1>tridi mohamed rayane</h1>
+    <p class="bio">🌍 Passionné de découvertes | Amoureux de la nature et des cultures</p>
+
+    <div class="profile-stats">
+      <div><strong>18</strong><span>Pays visités</span></div>
+      <div><strong>43</strong><span>Publications</span></div>
+      <div><strong>128</strong><span>Photos</span></div>
+    </div>
+
+    <button onclick="togglePostForm()">➕ Ajouter un post</button>
+  </div>
+
+  <form id="new-post-form">
+    <h3>Nouvelle publication</h3>
+    <input type="text" placeholder="Titre du lieu" required>
+    <textarea rows="4" placeholder="Partage ton expérience..."></textarea>
+    <input type="file" placeholder="ajouter une photo">
+    <button type="submit">Publier</button>
+  </form>
+
+  <div class="posts-section">
+    <h1>Posts Partagés</h1>
+    <div class="post">
+      
+      <h3>ALger Palais RAIS</h3>
+      <img src="palaisRAIS.jpg" width="450px" alt="Photo 4">
+      <p>Une journée inoubliable entre les montagnes, les lacs et les nuages. Respirez, admirez, vivez !</p>
+      <div class="post-time">Publié il y a 2 jours</div>
+    </div>
+    <div class="post">
+      <h3>🏝️ sahara Hogar</h3>
+      <img src="hogar.jpg" width="450px" alt="Photo 3">
+      <p>Les pieds dans le sable chaud au Hogar ...., le bonheur simple !</p>
+      <div class="post-time">Publié il y a 4 jours</div>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <H1>Photos Partagées </H1>
+    <a href="tahat.jpg"><img src="tahat.jpg" alt="Photo 1"></a>
+    <img src="bigmosque.jpg" alt="Photo 2">
+    <img src="hogar.jpg" alt="Photo 3">
+    <img src="palaisRAIS.jpg" alt="Photo 4">
+    <img src="amirmosque.jpg" alt="Photo 5">
+    <img src="quechua.jpg" alt="Photo 6">
+  </div>
+
+
+  <div class="footer">
+    <button class="footer-button">
+        <i class="fas fa-home"></i>
+        <a href="home.html">Home</a>
+    </button>
+    <button class="footer-button">
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="map.html" >Map</a>
+    </button>
+    <button class="footer-button">
+        <i class="fas fa-user"></i>
+        <a href="profile.html">Profil</a>
+    </button>
+  </div>
+</body>
+</html>

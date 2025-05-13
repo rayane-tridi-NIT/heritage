@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heritage</title>
+  <link rel="stylesheet" href="home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script src="home.js" defer></script>
+</head>
+<body>
+    <style>
+      .bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.bottom-nav .nav-link {
+  color: black;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.bottom-nav .nav-link.disabled {
+  color: grey;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+     .header-heritage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #4736136e, #573418e5);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Pour que le contenu ne passe pas sous l'en-tête */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f4f4;
+  padding-top: 100px; /* ajuster selon la hauteur de ton header */
+}
+
+/* Menu hamburger fixe */
+.menu-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 1100;
+}
+
+            .header-heritage h1 {
+              font-size: 2rem;
+              margin: 0;
+              display: flex;
+              align-items: center;
+            }
+        
+            .header-heritage .emoji {
+              font-size: 2rem;
+              margin-right: 0.5rem;
+            }
+            .hero-image {
+  margin-top: -40px; /* fais chevaucher l'image sous l'entête */
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+          </style>
+  <!-- Entête identique à celle de la page Map -->
+  <header class="header-heritage">
+    <h1><span class="emoji">🌍</span> Heritage</h1>
+  </header>
+  <div class="hero-image">
+    <img src="background home.webp" alt="HERITAGE" />
+  </div>
+  
+  <!-- Conteneur du menu -->
+  <div class="menu-container">
+    <button class="menu-button">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    <div class="menu">
+      <a href="connexion.html">Sign in</a>
+      <a href="#">Settings</a>
+      <a href="#">About</a>
+    </div>
+    
+  </div>
+
+  <!-- Bouton Filtrer + Menu -->
+  <button id="filterBtn" class="filter-button">Filtrer</button>
+  <div id="filterMenu" class="filter-menu hidden">
+    <label><input type="checkbox" name="category" value="AI" /> Destination</label>
+    <label><input type="checkbox" name="category" value="Robotics" /> Objet</label>
+    <label><input type="checkbox" name="category" value="Web" /> HOTEL</label>
+    <label><input type="checkbox" name="category" value="Web" /> Guide</label>
+    <label><input type="checkbox" name="category" value="Web" /> Transport</label>
+    <button id="applyFilter" class="apply-filter">Appliquer</button>
+  </div>
+
+  <!-- Galerie -->
+  <div class="content">
+    <div class="gallery">
+      <a href="tahat.jpg" class="gallery-item"><img src="tahat.jpg" alt="Photo 1" /></a>
+      <a href="bigmosque.jpg" class="gallery-item"><img src="bigmosque.jpg" alt="Photo 2" /></a>
+      <a href="hogar.jpg" class="gallery-item"><img src="hogar.jpg" alt="Photo 3" /></a>
+      <a href="palaisRAIS.jpg" class="gallery-item"><img src="palaisRAIS.jpg" alt="Photo 4" /></a>
+      <a href="amirmosque.jpg" class="gallery-item"><img src="amirmosque.jpg" alt="Photo 5" /></a>
+      <a href="quechua.jpg" class="gallery-item"><img src="quechua.jpg" alt="Photo 6" /></a>
+      <a href="endroit.html" class="gallery-item"><img src="imagesbejaia.jpeg" alt="Photo 6" /></a>
+            <a href="quechua.jpg" class="gallery-item"><img src="quechua.jpg" alt="Photo 6" /></a>
+            <a href="jtdRVTRE8H138D9MERTaf57rvIlj30HKZ490vjfv.jpg" class="gallery-item"><img src="jtdRVTRE8H138D9MERTaf57rvIlj30HKZ490vjfv.jpg" alt="Photo 6" /></a>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <div class="footer">
+    <button class="footer-button">
+        <i class="fas fa-home"></i>
+        <a href="home.html">Home</a>
+    </button>
+    <button class="footer-button">
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="map.html" >Map</a>
+    </button>
+    <button class="footer-button">
+        <i class="fas fa-user"></i>
+        <a href="profile.html">Profil</a>
+    </button>
+</div>
+
+</body>
+</html>

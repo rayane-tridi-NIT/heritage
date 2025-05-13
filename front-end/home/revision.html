@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test display</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+      text-align: center;
+      line-height: 500px;
+    }
+
+    .inline-block-container {
+      border: 2px dashed #aaa;
+      padding: 10px;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 2px dashed #aaa;
+      padding: 10px;
+      height: 150px;
+      margin-top: 30px;
+    }
+
+    .red { background-color: red; }
+    .green { background-color: green; }
+    .blue { background-color: blue; }
+  </style>
+</head>
+<body>
+
+  <h2>Display: inline-block</h2>
+  <div class="inline-block-container">
+    <div class="box red">1</div>
+    <div class="box green">2</div>
+    <div class="box blue">3</div>
+  </div>
+
+  <h2>Display: flex</h2>
+  <div class="flex-container">
+    <div class="box red">1</div>
+    <div class="box green">2</div>
+    <div class="box blue">3</div>
+  </div>
+<?php
+  $b=[];
+var_dump($b);
+
+?>
+</body>
+</html>

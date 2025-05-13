@@ -1,0 +1,30 @@
+vmysql -u root -p
+
+
+CREATE DATABASE heritage_db;
+EXIT;
+
+
+you should replace the your_password and your_username with your actual MySQL username and password. your_username usally is root and your_password is the password you set for the root user. If you haven't set a password, you can leave it blank.
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://your_username:your_password@localhost/heritage_db"
+
+
+CREATE TABLE locations (
+    id INT PRIMARY KEY,
+    title VARCHAR(100),
+    city VARCHAR(100),
+    category VARCHAR(100),
+    image_path VARCHAR(255)
+);
+
+
+INSERT INTO locations (id, title, city, category, image_path) VALUES
+(1, 'Tahat', 'Hoggar', 'Destination', 'tahat.jpg'),
+(2, 'Grande Mosquée', 'Alger', 'Destination', 'bigmosque.jpg'),
+(3, 'Hogar', 'Tamanrasset', 'Destination', 'hogar.jpg'),
+(4, 'Palais Raïs', 'Alger', 'Destination', 'palaisRAIS.jpg'),
+(5, 'Mosquée Émir', 'Constantine', 'Destination', 'amirmosque.jpg'),
+(6, 'Mosquée Quechua', 'Oran', 'Destination', 'quechua.jpg'),
+(7, 'Béjaïa', 'Béjaïa', 'Destination', 'imagesbejaia.jpeg'),
+(8, 'Guide Casbah', 'Alger', 'Guide', 'jtdRVTRE8H138D9MERTaf57rvIlj30HKZ490vjfv.jpg');
+

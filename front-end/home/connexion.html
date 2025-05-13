@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heritage - Connexion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url('background home.webp');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            width: 380px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #291f15;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            z-index: 1;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border-radius: 12px;
+            border: 2px solid #e1e1e1;
+            background: white;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #291f15;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(41, 31, 21, 0.1);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #291f15;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #3a2c1e;
+            transform: translateY(-1px);
+        }
+
+        .switch {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .switch a {
+            color: #291f15;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .switch a:hover {
+            color: #3a2c1e;
+            text-decoration: underline;
+        }
+
+        .form {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .form.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #291f15;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 2;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 12px;
+            color: white;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #ff5252, #f44336);
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="container">
+        <form id="loginForm" class="form active">
+            <h2>Connexion</h2>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Mot de passe" required>
+            </div>
+            <button type="submit">Se connecter</button>
+            <div class="switch">
+                Pas encore inscrit ? <a onclick="switchForm('signupForm')">Créer un compte</a>
+            </div>
+        </form>
+
+        <form id="signupForm" class="form">
+            <h2>Inscription</h2>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Nom complet" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Mot de passe" required>
+            </div>
+            <button type="submit">S'inscrire</button>
+            <div class="switch">
+                Déjà un compte ? <a onclick="switchForm('loginForm')">Se connecter</a>
+            </div>
+        </form>
+    </div>
+    <div id="toast" class="toast"></div>
+
+    <script>
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        async function switchForm(id) {
+            document.getElementById("loginForm").classList.remove("active");
+            document.getElementById("signupForm").classList.remove("active");
+            document.getElementById(id).classList.add("active");
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            const email = e.target.querySelector('input[type="email"]').value;
+            const password = e.target.querySelector('input[type="password"]').value;
+            
+            formData.append('username', email);
+            formData.append('password', password);
+            
+            try {
+                const response = await fetch('http://localhost:8000/token', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('token', data.access_token);
+                    localStorage.setItem('userEmail', email);
+                    showToast('Connexion réussie!');
+                    setTimeout(() => {
+                        window.location.href = 'home.html';
+                    }, 1500);
+                } else {
+                    showToast(data.detail || 'Échec de la connexion', 'error');
+                }
+            } catch (error) {
+                showToast('Erreur de connexion', 'error');
+            }
+        });
+
+        document.getElementById("signupForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            const fullname = e.target.querySelector('input[type="text"]').value;
+            const email = e.target.querySelector('input[type="email"]').value;
+            const password = e.target.querySelector('input[type="password"]').value;
+            
+            formData.append('full_name', fullname);
+            formData.append('email', email);
+            formData.append('password', password);
+            
+            try {
+                const response = await fetch('http://localhost:8000/register', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showToast('Compte créé avec succès!', 'success');
+                    setTimeout(() => {
+                        switchForm('loginForm');
+                    }, 1500);
+                } else {
+                    showToast(data.detail || 'Échec de l\'inscription', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Erreur d\'inscription', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

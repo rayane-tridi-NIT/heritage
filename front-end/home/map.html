@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heritage - Lieux & Photos</title>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    #map { height: 400px; width: 100%; border-radius: 10px; }
+
+    .footer {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to right, #4736136e, #573418e5);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .footer a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .footer a:hover {
+            transform: scale(1.1);
+        }
+        
+    button:hover {
+      background-color: var(--button-hover);
+    }
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: 30px auto;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      user-select: none;
+      transform: translateY(-50%);
+    }
+
+    .next { right: 0; }
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+
+    .fade {
+      animation: fade 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+    .header-heritage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #4736136e, #573418e5);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000; /* noir */
+    text-align: center;
+    margin: 30px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+}
+
+  </style>
+</head>
+
+<body>
+    <header class="header-heritage">
+        <h1><span class="emoji">🌍</span> Heritage</h1>
+      </header>
+
+<div class="max-w-4xl mx-auto mt-8 p-6 bg-white text-gray-900 rounded-lg shadow-lg">
+  <h1 class="title">Carte Interactive</h1>
+
+  <div class="flex mb-4">
+    <input id="search" type="text" placeholder="Rechercher une ville..." class="w-full p-2 border rounded-lg">
+    <button id="searchButton" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Envoyer</button>
+  </div>
+  <p id="error" class="text-red-500 text-sm hidden">Ville non trouvée. Essayez une autre.</p>
+  <div id="map"></div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container" id="slideshow"></div>
+  <div class="text-center mt-2" id="dots"></div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <a href="home.html">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="map.html">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Map</span>
+    </a>
+    <a href="profile.html">
+        <i class="fas fa-user"></i>
+        <span>Profil</span>
+    </a>
+</div>
+
+<script>
+  const lieux = {
+    "Algerie": {
+      coords: [36.75, 3.06],
+      photos: [
+        "tahat.jpg",
+        "bigmosque.jpg",
+        "hogar.jpg",
+        "palaisRAIS.jpg",
+        "amirmosque.jpg",
+        "quechua.jpg"
+      ]
+    },
+    "Espagne": {
+      coords: [40.4168, -3.7038], // Coordonnées de Madrid
+      photos: [        "Spain_Barcelona_3840x2160.jpg",
+      
+      "madrid5.jpg",
+      "sagrada_familia_block-selection.jpg",
+      "parc-de-la-ciutadella-barcelone-weekend.jpg",
+        "barcelona2.jpg",
+        "logo heritage.webp"
+      ]
+    }
+  };
+
+  const map = L.map('map').setView([36.75, 3.06], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  const marker = L.marker([36.75, 3.06]).addTo(map).bindPopup('<b>Bienvenue en Algérie !</b>').openPopup();
+
+  // Load slideshow for a given place
+  function loadSlideshow(images) {
+    const slideshow = document.getElementById("slideshow");
+    const dots = document.getElementById("dots");
+    slideshow.innerHTML = "";
+    dots.innerHTML = "";
+    images.forEach((src, index) => {
+      const slide = document.createElement("div");
+      slide.className = "mySlides fade";
+      slide.innerHTML = `<img src="${src}" style="width:100%">`;
+      slideshow.appendChild(slide);
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      dot.onclick = () => currentSlide(index + 1);
+      dots.appendChild(dot);
+    });
+    // Arrows
+    slideshow.innerHTML += `<a class="prev" onclick="plusSlides(-1)">❮</a>
+                            <a class="next" onclick="plusSlides(1)">❯</a>`;
+    showSlides(slideIndex = 1);
+  }
+
+  // City search
+  document.getElementById('searchButton').addEventListener('click', searchCity);
+  document.getElementById('search').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') searchCity();
+  });
+
+  function searchCity() {
+    const city = document.getElementById('search').value.trim();
+    if (!city) return;
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.length > 0) {
+          const { lat, lon } = data[0];
+          map.setView([lat, lon], 8);
+          marker.setLatLng([lat, lon]).bindPopup(`<b>${city}</b>`).openPopup();
+          document.getElementById('error').classList.add('hidden');
+          
+          // Updated city search to dynamically load slideshow based on city name
+          const cityKey = Object.keys(lieux).find(lieu =>
+            city.toLowerCase().includes(lieu.toLowerCase())
+          );
+          if (cityKey) {
+            loadSlideshow(lieux[cityKey].photos);
+          }
+        } else {
+          document.getElementById('error').classList.remove('hidden');
+        }
+      });
+  }
+
+  // Slideshow logic
+  let slideIndex = 1;
+  function plusSlides(n) { showSlides(slideIndex += n); }
+  function currentSlide(n) { showSlides(slideIndex = n); }
+  function showSlides(n) {
+    let i;
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+    if (n > slides.length) slideIndex = 1;
+    if (n < 1) slideIndex = slides.length;
+    for (i = 0; i < slides.length; i++) slides[i].style.display = "none";
+    for (i = 0; i < dots.length; i++) dots[i].classList.remove("active");
+    if (slides[slideIndex - 1]) {
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].classList.add("active");
+    }
+  }
+
+  // Chargement initial
+  loadSlideshow(lieux["Algerie"].photos);
+</script>
+</body>
+</html>

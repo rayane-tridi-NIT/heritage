@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Heritage - Lac de Tikjda</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f9f9f9;
+      padding-bottom: 80px;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 32px;
+      color: #333;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .content h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    .description {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease-in-out;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .comments {
+      margin-top: 30px;
+    }
+    .comments h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .comment {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .comment p {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 5px;
+    }
+    .comment a {
+      font-size: 14px;
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .comment a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+            width: 100%;
+            height: 60px;
+            background: white;
+            display: flex;
+            justify-content: space-around; /* Espacement régulier */
+            align-items: center;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .footer-button {
+            background: none;
+            border: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .footer-button i {
+            font-size: 20px; /* Taille de l’icône */
+            margin-bottom: 2px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+        .boutons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      background-color: #f2f2f2;
+      padding: 15px;
+    }
+
+    .boutons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ac8915;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .boutons button:hover {
+      background-color: #1c1f1c;
+    }
+        </style>
+        
+</head>
+<body>
+
+  <header>
+    <h1>Heritage</h1>
+  </header>
+
+  <div class="boutons">
+    <button><a href="transport.html">Transport</a></button>
+    <button>Hôtels</button>
+    <button>Guide</button>
+  </div>
+
+  <div class="content">
+    <h2>Bejaia</h2>
+    <div class="gallery">
+      <img src="imagesbejaia.jpeg" alt="Lac de Tikjda 1">
+      <img src="BEJAIA.jpeg" alt="Lac de Tikjda 2">
+      <img src="téléchargementbejaia.jpeg" alt="Lac de Tikjda 2">
+    </div>
+    <p class="description">
+      Béjaïa est une ville située en bordure de la mer Méditerranée à 180 km à l'est d'Alger. Elle est le chef-lieu épnonyme de la wilaya de Béjaïa et la plus grande ville de la Kabylie.
+
+      Autrefois, à l'époque Romaine la ville était connue sous le nom de Saldae, au Moyen Âge elle devient une cité très prospères devant notamment la capitale de grandes dynasties musulmanes. Du temps de la colonisation française la ville était appelé Bougie en raison de la qualité de ses chandelles faites de cire d'abeille.<br>En termes de population, Béjaïa est la plus grande ville de Kabylie avec notamment 187 076 habitants lors du dernier recensement datant de 2005. Du fait de sa situation géographique, elle est également le plus important pôle industriel de la région concentrant de nombreuses industries grâce à la présence d'un des plus grands ports pétroliers et commerciaux de Méditerranée.<br>La ville de Béjaïa dispose d'un aéroport international situé à 5 mn de la ville, d'un port pour voyageurs, d'une gare des trains et d'une gare routière.
+
+      Béjaïa dispose d'une université baptisée au nom de Abderrahmane Mira (un martyr de la guerre d'Algérie). L'établissement dispose d'un effectif de 698 enseignants pour 22 792 étudiants (2006).
+    </p>
+
+
+    <div class="comments">
+      <h3>Avis des visiteurs</h3>
+
+      <div class="comment">
+        <p>Un endroit magnifique ! J'y suis allé l'été dernier et c'était magique. ❄️</p>
+        <a href="https://example.com/profil/amine" target="_blank">Voir le profil de Amine</a>
+      </div>
+
+      <div class="comment">
+        <p>La ville est splendide mais la nature autour est très mal préservée. Je recommande ! 🌲</p>
+        <a href="https://example.com/profil/samira" target="_blank">Voir le profil de Samira</a>
+      </div>
+
+      <div class="comment">
+        <p>Parfait pour une randonnée en famille a yema gouraya. On y respire l'air pur.</p>
+        <a href="https://example.com/profil/khaled" target="_blank">Voir le profil de Khaled</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="footer-button">
+        <i class="fas fa-home"></i>
+        <a href="home.html">Home</a>
+    </button>
+    <button class="footer-button">
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="map.html" >Map</a>
+    </button>
+    <button class="footer-button">
+        <i class="fas fa-user"></i>
+        <a href="profile.html">Profil</a>
+    </button>
+  </div>
+  
+  
+
+</body>
+</html>
+
+ 
